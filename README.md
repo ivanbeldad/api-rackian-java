@@ -46,5 +46,5 @@ Laravel framework in PHP, you can check the code here:
 
 ## License
 
-The Todo App is open-sourced software licensed under
+The API Rackian is open-sourced software licensed under
 the [MIT license](https://github.com/ivandelabeldad/api-rackian/blob/master/LICENSE).
