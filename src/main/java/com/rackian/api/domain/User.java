@@ -14,9 +14,6 @@ public class User implements Serializable {
     private long space;
     private TimeStamps timeStamps;
 
-    public User() {
-    }
-
     public String getId() {
         return id;
     }

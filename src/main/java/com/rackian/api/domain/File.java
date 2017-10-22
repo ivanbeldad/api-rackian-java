@@ -15,9 +15,6 @@ public class File implements Serializable {
     private User user;
     private TimeStamps timeStamps;
 
-    public File() {
-    }
-
     public String getId() {
         return id;
     }

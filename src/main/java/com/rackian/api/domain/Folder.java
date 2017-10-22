@@ -11,9 +11,6 @@ public class Folder implements Serializable {
     private User user;
     private TimeStamps timeStamps;
 
-    public Folder() {
-    }
-
     public String getId() {
         return id;
     }

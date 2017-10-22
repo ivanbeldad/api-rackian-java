@@ -7,9 +7,6 @@ public class TimeStamps {
     private ZonedDateTime created;
     private ZonedDateTime updated;
 
-    public TimeStamps() {
-    }
-
     public ZonedDateTime getCreated() {
         return created;
     }
