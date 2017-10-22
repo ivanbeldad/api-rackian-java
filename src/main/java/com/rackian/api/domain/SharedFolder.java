@@ -1,10 +1,13 @@
 package com.rackian.api.domain;
 
 import javax.persistence.*;
+import java.io.Serializable;
 
 @Entity
 @Table(name = "shared_folders")
-public class SharedFolder {
+public class SharedFolder implements Serializable {
+
+    private static final long serialVersionUID = 1L;
 
     @Id
     private long id;

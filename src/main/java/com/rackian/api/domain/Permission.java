@@ -1,10 +1,13 @@
 package com.rackian.api.domain;
 
 import javax.persistence.*;
+import java.io.Serializable;
 
 @Entity
 @Table(name = "permissions")
-public class Permission {
+public class Permission implements Serializable {
+
+    private static final long serialVersionUID = 1L;
 
     @Id
     private int id;

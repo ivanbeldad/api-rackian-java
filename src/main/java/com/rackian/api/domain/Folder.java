@@ -9,6 +9,8 @@ import java.util.Set;
 @Table(name = "folders")
 public class Folder implements Serializable {
 
+    private static final long serialVersionUID = 1L;
+
     @Id
     private String id;
 
