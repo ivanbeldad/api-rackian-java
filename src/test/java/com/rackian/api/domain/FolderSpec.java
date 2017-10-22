@@ -41,4 +41,11 @@ public class FolderSpec {
         assertThat(folder.getUser(), is(user));
     }
 
+    @Test
+    public void whenSetTimeStampsThenTimeStampsChange() throws Exception {
+        TimeStamps timeStamps = new TimeStamps();
+        folder.setTimeStamps(timeStamps);
+        assertThat(folder.getTimeStamps(), is(timeStamps));
+    }
+
 }

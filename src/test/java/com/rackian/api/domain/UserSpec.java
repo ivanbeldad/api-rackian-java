@@ -44,13 +44,6 @@ public class UserSpec {
     }
 
     @Test
-    public void whenSetJoinedThenJoinedChange() throws Exception {
-        ZonedDateTime joined = ZonedDateTime.of(2020, 1, 1, 0, 0, 0, 0, ZoneId.of("UTC"));
-        user.setJoined(joined);
-        assertThat(user.getJoined(), is(joined));
-    }
-
-    @Test
     public void whenSetIsActiveThenIsActiveChange() throws Exception {
         user.setActive(true);
         assertThat(user.isActive(), is(true));
@@ -60,6 +53,13 @@ public class UserSpec {
     public void whenSetSpaceThenSpaceChange() throws Exception {
         user.setSpace(1000L);
         assertThat(user.getSpace(), is(1000L));
+    }
+
+    @Test
+    public void whenSetTimeStampsThenTimeStampsChange() throws Exception {
+        TimeStamps timeStamps = new TimeStamps();
+        user.setTimeStamps(timeStamps);
+        assertThat(user.getTimeStamps(), is(timeStamps));
     }
 
 }

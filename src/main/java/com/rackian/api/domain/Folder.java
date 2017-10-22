@@ -1,12 +1,15 @@
 package com.rackian.api.domain;
 
-public class Folder {
+import java.io.Serializable;
+
+public class Folder implements Serializable {
 
     private String id;
     private String name;
     private String description;
     private Folder parentFolder;
     private User user;
+    private TimeStamps timeStamps;
 
     public Folder() {
     }
@@ -45,6 +48,14 @@ public class Folder {
 
     public void setUser(User user) {
         this.user = user;
+    }
+
+    public TimeStamps getTimeStamps() {
+        return timeStamps;
+    }
+
+    public void setTimeStamps(TimeStamps timeStamps) {
+        this.timeStamps = timeStamps;
     }
 
 }

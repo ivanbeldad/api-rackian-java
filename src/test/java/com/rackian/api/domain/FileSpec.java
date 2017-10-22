@@ -65,4 +65,11 @@ public class FileSpec {
         assertThat(file.getUser(), is(user));
     }
 
+    @Test
+    public void whenSetTimeStampsThenTimeStampsChange() throws Exception {
+        TimeStamps timeStamps = new TimeStamps();
+        file.setTimeStamps(timeStamps);
+        assertThat(file.getTimeStamps(), is(timeStamps));
+    }
+
 }

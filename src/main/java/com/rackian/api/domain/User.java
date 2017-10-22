@@ -1,17 +1,18 @@
 package com.rackian.api.domain;
 
+import java.io.Serializable;
 import java.time.ZonedDateTime;
 
-public class User {
+public class User implements Serializable {
 
     private String id;
     private String email;
     private String username;
     private String password;
     private ZonedDateTime lastLogin;
-    private ZonedDateTime joined;
     private boolean isActive;
     private long space;
+    private TimeStamps timeStamps;
 
     public User() {
     }
@@ -52,14 +53,6 @@ public class User {
         this.lastLogin = lastLogin;
     }
 
-    public ZonedDateTime getJoined() {
-        return joined;
-    }
-
-    public void setJoined(ZonedDateTime joined) {
-        this.joined = joined;
-    }
-
     public boolean isActive() {
         return isActive;
     }
@@ -74,6 +67,14 @@ public class User {
 
     public void setSpace(long space) {
         this.space = space;
+    }
+
+    public TimeStamps getTimeStamps() {
+        return timeStamps;
+    }
+
+    public void setTimeStamps(TimeStamps timeStamps) {
+        this.timeStamps = timeStamps;
     }
 
 }

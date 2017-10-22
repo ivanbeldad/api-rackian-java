@@ -1,6 +1,8 @@
 package com.rackian.api.domain;
 
-public class File {
+import java.io.Serializable;
+
+public class File implements Serializable {
 
     private String id;
     private String name;
@@ -11,6 +13,7 @@ public class File {
     private String location;
     private Folder folder;
     private User user;
+    private TimeStamps timeStamps;
 
     public File() {
     }
@@ -81,6 +84,14 @@ public class File {
 
     public void setUser(User user) {
         this.user = user;
+    }
+
+    public TimeStamps getTimeStamps() {
+        return timeStamps;
+    }
+
+    public void setTimeStamps(TimeStamps timeStamps) {
+        this.timeStamps = timeStamps;
     }
 
 }
