@@ -16,6 +16,12 @@ public class SharedFolderSpec {
     }
 
     @Test
+    public void whenSetLinkThenLinkChange() throws Exception {
+        sharedFolder.setLink("https://example.com");
+        assertThat(sharedFolder.getLink(), is("https://example.com"));
+    }
+
+    @Test
     public void whenSetFolderThenFolderChange() throws Exception {
         Folder folder = new Folder();
         sharedFolder.setFolder(folder);
@@ -24,15 +30,16 @@ public class SharedFolderSpec {
 
     @Test
     public void whenSetSharedPermissionThenSharedPermissionChange() throws Exception {
-        SharedPermission sharedPermission = new SharedPermission();
-        sharedFolder.setSharedPermission(sharedPermission);
-        assertThat(sharedFolder.getSharedPermission(), is(sharedPermission));
+        Permission permission = new Permission();
+        sharedFolder.setPermission(permission);
+        assertThat(sharedFolder.getPermission(), is(permission));
     }
 
     @Test
-    public void whenSetLinkThenLinkChange() throws Exception {
-        sharedFolder.setLink("https://example.com");
-        assertThat(sharedFolder.getLink(), is("https://example.com"));
+    public void whenSetTimeStampsThenTimeStampsChange() throws Exception {
+        TimeStamps timeStamps = new TimeStamps();
+        sharedFolder.setTimeStamps(timeStamps);
+        assertThat(sharedFolder.getTimeStamps(), is(timeStamps));
     }
 
 }

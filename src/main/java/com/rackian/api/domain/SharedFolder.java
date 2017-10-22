@@ -1,14 +1,38 @@
 package com.rackian.api.domain;
 
+import javax.persistence.*;
+
+@Entity
+@Table(name = "shared_folders")
 public class SharedFolder {
 
+    @Id
     private long id;
-    private Folder folder;
-    private SharedPermission sharedPermission;
+
+    @Column(name = "link", nullable = false)
     private String link;
+
+    @ManyToOne
+    @JoinColumn(name = "folder")
+    private Folder folder;
+
+    @ManyToOne
+    @JoinColumn(name = "permission")
+    private Permission permission;
+
+    @Embedded
+    private TimeStamps timeStamps;
 
     public long getId() {
         return id;
+    }
+
+    public String getLink() {
+        return link;
+    }
+
+    public void setLink(String link) {
+        this.link = link;
     }
 
     public Folder getFolder() {
@@ -19,20 +43,20 @@ public class SharedFolder {
         this.folder = folder;
     }
 
-    public SharedPermission getSharedPermission() {
-        return sharedPermission;
+    public Permission getPermission() {
+        return permission;
     }
 
-    public void setSharedPermission(SharedPermission sharedPermission) {
-        this.sharedPermission = sharedPermission;
+    public void setPermission(Permission permission) {
+        this.permission = permission;
     }
 
-    public String getLink() {
-        return link;
+    public TimeStamps getTimeStamps() {
+        return timeStamps;
     }
 
-    public void setLink(String link) {
-        this.link = link;
+    public void setTimeStamps(TimeStamps timeStamps) {
+        this.timeStamps = timeStamps;
     }
 
 }
