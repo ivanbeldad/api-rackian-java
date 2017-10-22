@@ -1,26 +1,44 @@
 package com.rackian.api.domain;
 
-import java.time.ZonedDateTime;
+import javax.persistence.*;
+import java.time.Instant;
+import java.util.Date;
 
+@Embeddable
 public class TimeStamps {
 
-    private ZonedDateTime created;
-    private ZonedDateTime updated;
+    @Column(name = "created")
+    @Temporal(value = TemporalType.TIMESTAMP)
+    private Date created;
 
-    public ZonedDateTime getCreated() {
+    @Column(name = "updated")
+    @Temporal(value = TemporalType.TIMESTAMP)
+    private Date updated;
+
+    public Date getCreated() {
         return created;
     }
 
-    public void setCreated(ZonedDateTime created) {
+    public void setCreated(Date created) {
         this.created = created;
     }
 
-    public ZonedDateTime getUpdated() {
+    public Date getUpdated() {
         return updated;
     }
 
-    public void setUpdated(ZonedDateTime updated) {
+    public void setUpdated(Date updated) {
         this.updated = updated;
+    }
+
+    @PrePersist
+    protected void onCreate() {
+        created = Date.from(Instant.now());
+    }
+
+    @PreUpdate
+    protected void onUpdate() {
+        updated = Date.from(Instant.now());
     }
 
 }

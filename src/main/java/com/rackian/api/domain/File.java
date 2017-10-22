@@ -1,18 +1,38 @@
 package com.rackian.api.domain;
 
+import javax.persistence.*;
 import java.io.Serializable;
 
+@Entity
+@Table(name = "files")
 public class File implements Serializable {
 
+    @Id
     private String id;
+
+    @Column(name = "name", nullable = false)
     private String name;
+
+    @Column(name = "description")
     private String description;
+
+    @Column(name = "size", nullable = false)
     private long size;
+
+    @Column(name = "mime_type", nullable = false)
     private String mimeType;
+
+    @Column(name = "extension", nullable = false)
     private String extension;
+
+    @Column(name = "location", nullable = false)
     private String location;
+
+    @ManyToOne
+    @JoinColumn(name = "folder")
     private Folder folder;
-    private User user;
+
+    @Embedded
     private TimeStamps timeStamps;
 
     public String getId() {
@@ -73,14 +93,6 @@ public class File implements Serializable {
 
     public void setFolder(Folder folder) {
         this.folder = folder;
-    }
-
-    public User getUser() {
-        return user;
-    }
-
-    public void setUser(User user) {
-        this.user = user;
     }
 
     public TimeStamps getTimeStamps() {

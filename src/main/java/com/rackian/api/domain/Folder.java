@@ -1,14 +1,38 @@
 package com.rackian.api.domain;
 
+import javax.persistence.*;
 import java.io.Serializable;
+import java.util.HashSet;
+import java.util.Set;
 
+@Entity
+@Table(name = "folders")
 public class Folder implements Serializable {
 
+    @Id
     private String id;
+
+    @Column(name = "name", nullable = false)
     private String name;
+
+    @Column(name = "description")
     private String description;
-    private Folder parentFolder;
+
+    @ManyToOne
+    @JoinColumn(name = "user")
     private User user;
+
+    @ManyToOne
+    @JoinColumn(name = "parent_folder")
+    private Folder parentFolder;
+
+    @OneToMany(mappedBy = "parentFolder")
+    private Set<Folder> folders = new HashSet<>();
+
+    @OneToMany(mappedBy = "folder")
+    private Set<File> files = new HashSet<>();
+
+    @Embedded
     private TimeStamps timeStamps;
 
     public String getId() {
@@ -31,6 +55,14 @@ public class Folder implements Serializable {
         this.description = description;
     }
 
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
+    }
+
     public Folder getParentFolder() {
         return parentFolder;
     }
@@ -39,12 +71,20 @@ public class Folder implements Serializable {
         this.parentFolder = parentFolder;
     }
 
-    public User getUser() {
-        return user;
+    public Set<Folder> getFolders() {
+        return folders;
     }
 
-    public void setUser(User user) {
-        this.user = user;
+    public void setFolders(Set<Folder> folders) {
+        this.folders = folders;
+    }
+
+    public Set<File> getFiles() {
+        return files;
+    }
+
+    public void setFiles(Set<File> files) {
+        this.files = files;
     }
 
     public TimeStamps getTimeStamps() {

@@ -3,6 +3,9 @@ package com.rackian.api.domain;
 import org.junit.Before;
 import org.junit.Test;
 
+import java.util.HashSet;
+import java.util.Set;
+
 import static org.hamcrest.CoreMatchers.*;
 import static org.hamcrest.MatcherAssert.assertThat;
 
@@ -28,6 +31,13 @@ public class FolderSpec {
     }
 
     @Test
+    public void whenSetUserThenUserChange() throws Exception {
+        User user = new User();
+        folder.setUser(user);
+        assertThat(folder.getUser(), is(user));
+    }
+
+    @Test
     public void whenSetParentFolderThenParentFolderChange() throws Exception {
         Folder parentFolder = new Folder();
         folder.setParentFolder(parentFolder);
@@ -35,10 +45,17 @@ public class FolderSpec {
     }
 
     @Test
-    public void whenSetUserThenUserChange() throws Exception {
-        User user = new User();
-        folder.setUser(user);
-        assertThat(folder.getUser(), is(user));
+    public void whenSetFoldersThenFoldersChange() throws Exception {
+        Set<Folder> folders = new HashSet<>();
+        folder.setFolders(folders);
+        assertThat(folder.getFolders(), is(folders));
+    }
+
+    @Test
+    public void whenSetFilesThenFilesChange() throws Exception {
+        Set<File> files = new HashSet<>();
+        folder.setFiles(files);
+        assertThat(folder.getFiles(), is(files));
     }
 
     @Test

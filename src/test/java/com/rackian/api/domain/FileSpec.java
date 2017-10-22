@@ -59,13 +59,6 @@ public class FileSpec {
     }
 
     @Test
-    public void whenSetUserThenUserChange() throws Exception {
-        User user = new User();
-        file.setUser(user);
-        assertThat(file.getUser(), is(user));
-    }
-
-    @Test
     public void whenSetTimeStampsThenTimeStampsChange() throws Exception {
         TimeStamps timeStamps = new TimeStamps();
         file.setTimeStamps(timeStamps);

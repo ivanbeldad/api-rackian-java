@@ -1,17 +1,41 @@
 package com.rackian.api.domain;
 
+import javax.persistence.*;
 import java.io.Serializable;
-import java.time.ZonedDateTime;
+import java.util.Date;
+import java.util.HashSet;
+import java.util.Set;
 
+@Entity
+@Table(name = "users")
 public class User implements Serializable {
 
+    @Id
     private String id;
+
+    @Column(name = "email", nullable = false)
     private String email;
+
+    @Column(name = "username", nullable = false)
     private String username;
+
+    @Column(name = "password", nullable = false)
     private String password;
-    private ZonedDateTime lastLogin;
-    private boolean isActive;
-    private long space;
+
+    @Column(name = "last_login")
+    @Temporal(value = TemporalType.TIMESTAMP)
+    private Date lastLogin;
+
+    @Column(name = "is_active", nullable = false)
+    private boolean isActive = false;
+
+    @Column(name = "space", nullable = false)
+    private long space = 0;
+
+    @OneToMany(mappedBy = "user")
+    private Set<Folder> folders = new HashSet<>();
+
+    @Embedded
     private TimeStamps timeStamps;
 
     public String getId() {
@@ -42,11 +66,11 @@ public class User implements Serializable {
         this.password = password;
     }
 
-    public ZonedDateTime getLastLogin() {
+    public Date getLastLogin() {
         return lastLogin;
     }
 
-    public void setLastLogin(ZonedDateTime lastLogin) {
+    public void setLastLogin(Date lastLogin) {
         this.lastLogin = lastLogin;
     }
 
@@ -64,6 +88,14 @@ public class User implements Serializable {
 
     public void setSpace(long space) {
         this.space = space;
+    }
+
+    public Set<Folder> getFolders() {
+        return folders;
+    }
+
+    public void setFolders(Set<Folder> folders) {
+        this.folders = folders;
     }
 
     public TimeStamps getTimeStamps() {

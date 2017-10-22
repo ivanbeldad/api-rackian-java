@@ -3,8 +3,10 @@ package com.rackian.api.domain;
 import org.junit.Before;
 import org.junit.Test;
 
-import java.time.ZoneId;
-import java.time.ZonedDateTime;
+import java.time.Instant;
+import java.util.Date;
+import java.util.HashSet;
+import java.util.Set;
 
 import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.MatcherAssert.assertThat;
@@ -38,7 +40,7 @@ public class UserSpec {
 
     @Test
     public void whenSetLastLoginThenLastLoginChange() throws Exception {
-        ZonedDateTime lastLogin = ZonedDateTime.of(2020, 1, 1, 0, 0, 0, 0, ZoneId.of("UTC"));
+        Date lastLogin = Date.from(Instant.now());
         user.setLastLogin(lastLogin);
         assertThat(user.getLastLogin(), is(lastLogin));
     }
@@ -53,6 +55,13 @@ public class UserSpec {
     public void whenSetSpaceThenSpaceChange() throws Exception {
         user.setSpace(1000L);
         assertThat(user.getSpace(), is(1000L));
+    }
+
+    @Test
+    public void whenSetFoldersThenFoldersChange() throws Exception {
+        Set<Folder> folders = new HashSet<>();
+        user.setFolders(folders);
+        assertThat(user.getFolders(), is(folders));
     }
 
     @Test
