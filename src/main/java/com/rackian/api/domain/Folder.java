@@ -25,7 +25,7 @@ public class Folder implements Serializable {
     private User user;
 
     @ManyToOne
-    @JoinColumn(name = "parent_folder")
+    @JoinColumn(name = "parent_folder", columnDefinition = "char")
     private Folder parentFolder;
 
     @OneToMany(mappedBy = "parentFolder")

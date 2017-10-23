@@ -20,3 +20,6 @@ src/main/resources/application.properties
 
 # DOCKER
 /.env_*
+
+# EXAMPLE DB
+src/main/resources/*.sql
