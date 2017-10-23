@@ -7,7 +7,6 @@ import java.time.Instant;
 import java.util.Date;
 
 import static org.hamcrest.CoreMatchers.is;
-import static org.hamcrest.CoreMatchers.notNullValue;
 import static org.hamcrest.MatcherAssert.assertThat;
 
 public class TimeStampsSpec {
@@ -31,18 +30,6 @@ public class TimeStampsSpec {
         Date updated = Date.from(Instant.now());
         timeStamps.setUpdated(updated);
         assertThat(timeStamps.getUpdated(), is(updated));
-    }
-
-    @Test
-    public void whenOnCreateThenCreateIsNotNull() throws Exception {
-        timeStamps.onCreate();
-        assertThat(timeStamps.getCreated(), notNullValue());
-    }
-
-    @Test
-    public void whenOnUpdateThenUpdateIsNotNull() throws Exception {
-        timeStamps.onUpdate();
-        assertThat(timeStamps.getUpdated(), notNullValue());
     }
 
 }

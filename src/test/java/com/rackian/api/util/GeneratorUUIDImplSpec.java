@@ -8,6 +8,7 @@ import static org.hamcrest.MatcherAssert.assertThat;
 
 public class GeneratorUUIDImplSpec {
 
+    private final int LENGTH = 12;
     private GeneratorUUID generatorUUID;
 
     @Before
@@ -21,8 +22,8 @@ public class GeneratorUUIDImplSpec {
     }
 
     @Test
-    public void whenGenerateUUIDThenStringHaveEightCharacters() throws Exception {
-        assertThat(generatorUUID.generateUUID().length(), is(8));
+    public void whenGenerateUUIDThenStringHaveLengthCharacters() throws Exception {
+        assertThat(generatorUUID.generateUUID().length(), is(LENGTH));
     }
 
     @Test
@@ -45,8 +46,9 @@ public class GeneratorUUIDImplSpec {
     }
 
     @Test
-    public void whenGenerateChildUUIDThenStringHaveNineCharactersMoreThanParent() throws Exception {
-        assertThat(generatorUUID.generateChildUUID("1234").length(), is(13));
+    public void whenGenerateChildUUIDThenStringLengthPlusOneCharactersMoreThanParent() throws Exception {
+        String parent = "123456789012";
+        assertThat(generatorUUID.generateChildUUID(parent).length(), is(parent.length() + LENGTH + 1));
     }
 
     @Test

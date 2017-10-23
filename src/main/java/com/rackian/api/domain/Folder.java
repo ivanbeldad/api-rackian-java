@@ -1,8 +1,8 @@
 package com.rackian.api.domain;
 
 import com.rackian.api.util.GeneratorUUID;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Configurable;
+import com.rackian.api.util.GeneratorUUIDImpl;
+import com.rackian.api.util.TimeStampListener;
 
 import javax.persistence.*;
 import java.io.Serializable;
@@ -11,8 +11,8 @@ import java.util.Set;
 
 @Entity
 @Table(name = "folders")
-@Configurable
-public class Folder implements Serializable {
+@EntityListeners(TimeStampListener.class)
+public class Folder implements Serializable, TimeStamped {
 
     private static final long serialVersionUID = 1L;
 
@@ -41,9 +41,6 @@ public class Folder implements Serializable {
 
     @Embedded
     private TimeStamps timeStamps;
-
-    @Transient
-    private GeneratorUUID generatorUUID;
 
     public String getId() {
         return id;
@@ -105,13 +102,9 @@ public class Folder implements Serializable {
         this.timeStamps = timeStamps;
     }
 
-    @Autowired
-    private void setGeneratorUUID(GeneratorUUID generatorUUID) {
-        this.generatorUUID = generatorUUID;
-    }
-
     @PrePersist
-    public void idGenerator() {
+    public void prePersist() {
+        GeneratorUUID generatorUUID = new GeneratorUUIDImpl();
         id = generatorUUID.generateChildUUID(user.getId());
     }
 

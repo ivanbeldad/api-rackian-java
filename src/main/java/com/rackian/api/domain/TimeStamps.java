@@ -1,7 +1,6 @@
 package com.rackian.api.domain;
 
 import javax.persistence.*;
-import java.time.Instant;
 import java.util.Date;
 
 @Embeddable
@@ -29,16 +28,6 @@ public class TimeStamps {
 
     public void setUpdated(Date updated) {
         this.updated = updated;
-    }
-
-    @PrePersist
-    protected void onCreate() {
-        created = Date.from(Instant.now());
-    }
-
-    @PreUpdate
-    protected void onUpdate() {
-        updated = Date.from(Instant.now());
     }
 
 }

@@ -7,14 +7,16 @@ import java.util.Random;
 @Component(value = "generatorUUID")
 public class GeneratorUUIDImpl implements GeneratorUUID {
 
+    private final int LENGTH = 12;
+
     @Override
     public String generateUUID() {
-        return randomCharacters(8);
+        return randomCharacters(LENGTH);
     }
 
     @Override
     public String generateChildUUID(String parentUUID) {
-        return parentUUID + "-" + randomCharacters(8);
+        return parentUUID + "-" + randomCharacters(LENGTH);
     }
 
     private String randomCharacters(int length) {
