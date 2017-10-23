@@ -1,7 +1,10 @@
 package com.rackian.api.util;
 
+import org.springframework.stereotype.Component;
+
 import java.util.Random;
 
+@Component(value = "generatorUUID")
 public class GeneratorUUIDImpl implements GeneratorUUID {
 
     @Override

@@ -1,17 +1,19 @@
 package com.rackian.api.domain;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.JsonProperty;
+import com.rackian.api.util.GeneratorUUID;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Configurable;
 
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
-import java.util.UUID;
 
 @Entity
 @Table(name = "users")
+@Configurable
 public class User implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -44,6 +46,9 @@ public class User implements Serializable {
 
     @Embedded
     private TimeStamps timeStamps;
+
+    @Transient
+    private GeneratorUUID generatorUUID;
 
     public String getId() {
         return id;
@@ -113,9 +118,14 @@ public class User implements Serializable {
         this.timeStamps = timeStamps;
     }
 
+    @Autowired
+    private void setGeneratorUUID(GeneratorUUID generatorUUID) {
+        this.generatorUUID = generatorUUID;
+    }
+
     @PrePersist
-    public void ensureId() {
-        id = UUID.randomUUID().toString();
+    public void idGenerator() {
+        id = generatorUUID.generateUUID();
     }
 
 }
